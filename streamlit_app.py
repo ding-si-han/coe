@@ -16,7 +16,8 @@ st.set_page_config(
 @st.cache_data
 def get_coe_data():
     DATA_FILENAME = Path(__file__).parent/'data/coe_parsed.csv'
-    coe_df = pd.read_csv(DATA_FILENAME)
+    coe_df = pd.read_csv(DATA_FILENAME, parse_dates=["date"])
+    print(coe_df.head())
     return coe_df
 
 
