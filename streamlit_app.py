@@ -94,24 +94,23 @@ from_year, to_year = st.slider(
     max_value=max_value,
     value=[min_value, max_value])
 
-# countries = gdp_df['Country Code'].unique()
+vehicle_class = coe_df['vehicle_class'].unique()
 
-# if not len(countries):
-#     st.warning("Select at least one country")
+if not len(vehicle_class):
+    st.warning("Select at least one category")
 
-# selected_countries = st.multiselect(
-#     'Which countries would you like to view?',
-#     countries,
-#     ['DEU', 'FRA', 'GBR', 'BRA', 'MEX', 'JPN'])
-
-# ''
-# ''
-# ''
+selected_class = st.multiselect(
+    'Which vehicle class would you like to view?',
+    vehicle_class,
+    ['Category A', 'Category B'])
+''
+''
+''
 
 # Filter the data
 filtered_coe_df = coe_df[
-    # (gdp_df['Country Code'].isin(selected_countries))
-    (coe_df['year'] <= to_year)
+    (coe_df['vehicle_class'].isin(selected_class))
+    & (coe_df['year'] <= to_year)
     & (from_year <= coe_df['year'])
 ]
 
