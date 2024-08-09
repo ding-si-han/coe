@@ -5,12 +5,13 @@ from pathlib import Path
 
 # Set the title and favicon that appear in the Browser's tab bar.
 st.set_page_config(
-    page_title='GDP dashboard',
-    page_icon=':earth_americas:', # This is an emoji shortcode. Could be a URL too.
+    page_title='COE dashboard',
+    page_icon=':car:',  # This is an emoji shortcode. Could be a URL too.
 )
 
 # -----------------------------------------------------------------------------
 # Declare some useful functions.
+
 
 @st.cache_data
 def get_gdp_data():
@@ -54,8 +55,10 @@ def get_gdp_data():
 
     # Convert years from string to integers
     gdp_df['Year'] = pd.to_numeric(gdp_df['Year'])
+    print(gdp_df.head())
 
     return gdp_df
+
 
 gdp_df = get_gdp_data()
 
@@ -64,11 +67,9 @@ gdp_df = get_gdp_data()
 
 # Set the title that appears at the top of the page.
 '''
-# :earth_americas: GDP dashboard
+# :car: COE dashboard
 
-Browse GDP data from the [World Bank Open Data](https://data.worldbank.org/) website. As you'll
-notice, the data only goes to 2022 right now, and datapoints for certain years are often missing.
-But it's otherwise a great (and did I mention _free_?) source of data.
+Browse COE data from the [Data.gov.sg](https://data.gov.sg/datasets/d_69b3380ad7e51aff3a7dcc84eba52b8a/view) website.
 '''
 
 # Add some spacing
@@ -133,8 +134,10 @@ for i, country in enumerate(selected_countries):
     col = cols[i % len(cols)]
 
     with col:
-        first_gdp = first_year[gdp_df['Country Code'] == country]['GDP'].iat[0] / 1000000000
-        last_gdp = last_year[gdp_df['Country Code'] == country]['GDP'].iat[0] / 1000000000
+        first_gdp = first_year[gdp_df['Country Code']
+                               == country]['GDP'].iat[0] / 1000000000
+        last_gdp = last_year[gdp_df['Country Code']
+                             == country]['GDP'].iat[0] / 1000000000
 
         if math.isnan(first_gdp):
             growth = 'n/a'
