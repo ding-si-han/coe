@@ -38,14 +38,14 @@ Browse COE data from the [Data.gov.sg](https://data.gov.sg/datasets/d_69b3380ad7
 ''
 ''
 
-min_value = 2010  # gdp_df['Year'].min()
-max_value = 2024  # gdp_df['Year'].max()
+min_value = coe_df['year'].min()
+max_value = coe_df['year'].max()
 
 from_year, to_year = st.slider(
     'Which years are you interested in?',
     min_value=min_value,
     max_value=max_value,
-    value=[min_value, max_value])
+    value=[max_value - 4, max_value])
 
 vehicle_class = coe_df['vehicle_class'].unique()
 
